@@ -1,15 +1,17 @@
 package Units;
+import Aux.Pos;
+
 
 public abstract class MeleeAttackUnit extends BaseHero {
     protected int attackRange;
 
-    public MeleeAttackUnit(int attackRange, String name, int x, int y, int strength, int maxStrength, int armor, int maxArmor, int armorBreak) {
-        super(name, x, y, strength, maxStrength, armor, maxArmor, armorBreak);
+    public MeleeAttackUnit(int attackRange, String name, Pos pos, int strength, int maxStrength, int armor, int maxArmor, int armorBreak) {
+        super(name, pos, strength, maxStrength, armor, maxArmor, armorBreak);
         this.attackRange = attackRange;
     }
 
     protected boolean withinAttackRange(BaseHero targetHero) {
-        return this.distanceFrom(targetHero) <= this.attackRange;
+        return (this.pos.distanceFrom(targetHero.pos) <= this.attackRange);
     }
 
     protected void meleeStrengthAttack(BaseHero targetHero) {

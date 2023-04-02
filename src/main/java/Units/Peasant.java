@@ -1,8 +1,9 @@
 package Units;
+import Aux.Pos;
 
 public class Peasant extends BaseHero {
-    public Peasant(String name, int x, int y) {
-        super(name, x, y, 7, 7, 5, 5, 0);
+    public Peasant(String name, Pos pos) {
+        super(name, pos, 7, 7, 5, 5, 0);
     }
 
     private void mendArmor(BaseHero targetHero) {

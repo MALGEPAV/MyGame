@@ -1,8 +1,10 @@
 package Units;
+import Aux.Pos;
+
 
 public class Monk extends SpellCaster {
-    public Monk(String name, int x, int y) {
-        super(15,15,name,x,y,10,10,10,10,0);
+    public Monk(String name, Pos pos) {
+        super(15,15,name,pos,10,10,10,10,0);
     }
 
     @Override

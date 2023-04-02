@@ -1,8 +1,12 @@
 package Units;
+import Aux.Pos;
+
+import javax.swing.text.Position;
 
 public class Mage extends SpellCaster {
-    public Mage(String name, int x, int y) {
-            super(20,20,name,x,y,7,7,7,7,0);
+    public Mage(String name, Pos pos) {
+
+        super(20,20,name,pos,7,7,7,7,0);
     }
 
     @Override

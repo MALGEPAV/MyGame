@@ -1,6 +1,8 @@
 package Units;
 
+import java.util.ArrayList;
+
 public interface GameInterface {
-    void turn();
+    void turn(ArrayList<BaseHero> enemies, ArrayList<BaseHero> allies);
     String getInfo();
 }
