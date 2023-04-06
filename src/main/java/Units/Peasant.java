@@ -15,7 +15,7 @@ public class Peasant extends BaseHero {
 
     @Override
     public void turn(ArrayList<BaseHero> enemies, ArrayList<BaseHero> allies) {
-        super.turn(enemies, allies);
-        this.state = "ready";
+        super.turn(enemies,allies);
+        if (!this.state.equals("dead")) this.state = "ready";
     }
 }

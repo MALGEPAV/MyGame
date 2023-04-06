@@ -20,6 +20,7 @@ public abstract class RangeAttackUnit extends BaseHero {
     @Override
     public void turn(ArrayList<BaseHero> enemies, ArrayList<BaseHero> allies) {
         super.turn(enemies, allies);
+        if (this.state.equals("dead")) return;
         if (this.projectiles == 0) {
             System.out.println(this.name + " has nothing to shoot with...");
             return;

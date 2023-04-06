@@ -53,10 +53,7 @@ public abstract class BaseHero implements GameInterface {
 
     @Override
     public void turn(ArrayList<BaseHero> enemies, ArrayList<BaseHero> allies) {
-        if (this.state.equals("dead")) {
-            System.out.println(this.name + " is very very dead...");
-            return;
-        }
+        if (this.state.equals("dead")) System.out.println(this.getInfo()+" "+this.name+" is very very dead...");
     }
 
     @Override

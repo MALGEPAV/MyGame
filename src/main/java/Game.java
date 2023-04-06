@@ -1,16 +1,14 @@
 import Aux.Pos;
 import Units.*;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.*;
 
 public class Game {
      private ArrayList<BaseHero> team1;
      private ArrayList<BaseHero> team2;
      private PriorityQueue<BaseHero> turnOrder;
      private int turnCount;
+     private static Scanner myScanner = new Scanner(System.in);
 
     private void setTeams(){
         this.team1 = new ArrayList<>();
@@ -19,22 +17,22 @@ public class Game {
         Random r = new Random();
         for (int i = 0; i < 10; i++) {
             switch (r.nextInt(7)) {
-                case 0 -> this.team1.add(new CrossBowman(getName(),new Pos(0,i)));
-                case 1 -> this.team1.add(new Mage(getName(), new Pos(0,i)));
-                case 2 -> this.team1.add(new Monk(getName(), new Pos(0,i)));
-                case 3 -> this.team1.add(new Peasant(getName(), new Pos(0,i)));
-                case 4 -> this.team1.add(new Raider(getName(), new Pos(0,i)));
-                case 5 -> this.team1.add(new Sniper(getName(), new Pos(0,i)));
-                default -> this.team1.add(new SpearMan(getName(),new Pos(0,i)));
+                case 0 -> this.team1.add(new CrossBowman(getNameM(),new Pos(0,i)));
+                case 1 -> this.team1.add(new Mage(getNameM(), new Pos(0,i)));
+                case 2 -> this.team1.add(new Monk(getNameM(), new Pos(0,i)));
+                case 3 -> this.team1.add(new Peasant(getNameM(), new Pos(0,i)));
+                case 4 -> this.team1.add(new Raider(getNameM(), new Pos(0,i)));
+                case 5 -> this.team1.add(new Sniper(getNameM(), new Pos(0,i)));
+                default -> this.team1.add(new SpearMan(getNameM(),new Pos(0,i)));
             }
             switch (r.nextInt(7)) {
-                case 0 -> this.team2.add(new CrossBowman(getName(), new Pos(9,i)));
-                case 1 -> this.team2.add(new Mage(getName(),new Pos(9,i)));
-                case 2 -> this.team2.add(new Monk(getName(), new Pos(9,i)));
-                case 3 -> this.team2.add(new Peasant(getName(), new Pos(9,i)));
-                case 4 -> this.team2.add(new Raider(getName(), new Pos(9,i)));
-                case 5 -> this.team2.add(new Sniper(getName(), new Pos(9,i)));
-                default -> this.team2.add(new SpearMan(getName(), new Pos(9,i)));
+                case 0 -> this.team2.add(new CrossBowman(getNameF(), new Pos(9,i)));
+                case 1 -> this.team2.add(new Mage(getNameF(),new Pos(9,i)));
+                case 2 -> this.team2.add(new Monk(getNameF(), new Pos(9,i)));
+                case 3 -> this.team2.add(new Peasant(getNameF(), new Pos(9,i)));
+                case 4 -> this.team2.add(new Raider(getNameF(), new Pos(9,i)));
+                case 5 -> this.team2.add(new Sniper(getNameF(), new Pos(9,i)));
+                default -> this.team2.add(new SpearMan(getNameF(), new Pos(9,i)));
             }
         }
     }
@@ -70,14 +68,25 @@ public class Game {
     }
 
     public void play(){
+        System.out.println("ДА НАЧНЕТСЯ БИТВА!");
          this.setTeams();
          this.showTeams();
-         this.setTurnOrder();
-         this.gameTurn();
-         this.showTeams();
+         this.turnCount = 1;
+         do {
+             System.out.printf("Ход номер %d \n", this.turnCount);
+             System.out.println("-".repeat(20));
+             this.setTurnOrder();
+             this.gameTurn();
+             this.showTeams();
+             this.turnCount++;
+             System.out.println("Введите любую строку для следующего хода или 'stop' для завершения");
+         } while (!myScanner.nextLine().equals("stop"));
     }
 
-    private String getName(){
-        return Names.values()[new Random().nextInt(Names.values().length)].toString();
+    private String getNameM(){
+        return NamesM.values()[new Random().nextInt(NamesM.values().length)].toString();
+    }
+    private String getNameF(){
+        return NamesF.values()[new Random().nextInt(NamesF.values().length)].toString();
     }
 }
