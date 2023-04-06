@@ -6,7 +6,7 @@ import javax.swing.text.Position;
 public class Mage extends SpellCaster {
     public Mage(String name, Pos pos) {
 
-        super(20,20,name,pos,7,7,7,7,0);
+        super(20,20,name,pos,7,7,7,7,0, 6);
     }
 
     @Override
@@ -14,6 +14,6 @@ public class Mage extends SpellCaster {
     }
     @Override
     public String getInfo() {
-        return "Маг "+this.name;
+        return "Маг ";
     }
 }

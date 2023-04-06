@@ -1,31 +1,37 @@
 package Units;
+
 import Aux.Pos;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Sniper extends RangeAttackUnit {
-    @Override
-    protected void rangeStrengthAttack(BaseHero targetHero) {
-        if (new Random().nextInt(1, 101) <= this.accuracy)
-            targetHero.getStrengthDamage(Math.max(this.strength - targetHero.armor, 0));
-        else System.out.println(this.name + " misses...");
-    }
 
     public Sniper(String name, Pos pos) {
-
-        super(10, 10, 70, name, pos, 15, 15, 8, 8, 5);
+        super(10, 10, 70, name, pos, 15, 15, 8, 8, 5, 9);
     }
+
+    @Override
+    public void attackTarget() {
+        if (new Random().nextInt(1, 101) <= this.accuracy) {
+            if ((float) (this.strength - this.targetHero.armor) / (float) this.targetHero.strength >= 0.2){
+                System.out.println(this.getInfo() + " " + this.name +
+                        " attacks str of " + this.targetHero.getInfo() + " " + this.targetHero.name);
+                this.targetHero.getStrengthDamage(Math.max(this.strength - this.targetHero.armor, 0));
+            }else{
+                System.out.println(this.getInfo() + " " + this.name +
+                        " attacks armor of " + this.targetHero.getInfo() + " " + this.targetHero.name);
+                this.targetHero.getArmorDamage(this.armorBreak);
+            }
+        } else {
+            System.out.println(this.getInfo() + " " + this.name + " misses "+
+                    "trying to attack "+this.targetHero.getInfo()+" "+this.targetHero.name);
+        }
+
+    }
+
     @Override
     public String getInfo() {
-        return "Снайпер "+this.name;
-    }
-
-    @Override
-    public void turn(ArrayList<BaseHero> enemies, ArrayList<BaseHero> allies) {
-        super.turn(enemies, allies);
-        if ((float)(this.strength-targetHero.armor)/ (float)targetHero.strength >= 0.2)
-            this.rangeStrengthAttack(targetHero);
-        else this.rangeArmorAttack(targetHero);
+        return "Снайпер ";
     }
 }

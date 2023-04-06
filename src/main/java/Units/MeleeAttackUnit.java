@@ -5,8 +5,8 @@ import Aux.Pos;
 public abstract class MeleeAttackUnit extends BaseHero {
     protected int attackRange;
 
-    public MeleeAttackUnit(int attackRange, String name, Pos pos, int strength, int maxStrength, int armor, int maxArmor, int armorBreak) {
-        super(name, pos, strength, maxStrength, armor, maxArmor, armorBreak);
+    public MeleeAttackUnit(int attackRange, String name, Pos pos, int strength, int maxStrength, int armor, int maxArmor, int armorBreak, int initiative) {
+        super(name, pos, strength, maxStrength, armor, maxArmor, armorBreak, initiative);
         this.attackRange = attackRange;
     }
 

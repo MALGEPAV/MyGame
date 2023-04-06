@@ -4,7 +4,7 @@ import Aux.Pos;
 
 public class Monk extends SpellCaster {
     public Monk(String name, Pos pos) {
-        super(15,15,name,pos,10,10,10,10,0);
+        super(15,15,name,pos,10,10,10,10,0,5);
     }
 
     @Override
@@ -13,6 +13,6 @@ public class Monk extends SpellCaster {
     }
     @Override
     public String getInfo() {
-        return "Монах "+this.name;
+        return "Монах ";
     }
 }

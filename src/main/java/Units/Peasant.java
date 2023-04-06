@@ -1,16 +1,21 @@
 package Units;
 import Aux.Pos;
 
+import java.util.ArrayList;
+
 public class Peasant extends BaseHero {
     public Peasant(String name, Pos pos) {
-        super(name, pos, 7, 7, 5, 5, 0);
+        super(name, pos, 7, 7, 5, 5, 0,4);
     }
 
-    private void mendArmor(BaseHero targetHero) {
-            targetHero.getArmorMending(Math.min(targetHero.maxArmor - targetHero.armor, 3));
-    }
     @Override
     public String getInfo() {
-        return "Крестьянин "+this.name;
+        return "Крестьянин ";
+    }
+
+    @Override
+    public void turn(ArrayList<BaseHero> enemies, ArrayList<BaseHero> allies) {
+        super.turn(enemies, allies);
+        this.state = "ready";
     }
 }
