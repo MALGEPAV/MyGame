@@ -41,6 +41,6 @@ public abstract class RangeAttackUnit extends BaseHero {
 
     @Override
     public String toString() {
-        return super.toString()+" Proj: "+this.projectiles+"("+this.maxProjectiles+")";
+        return super.toString()+" \uD83C\uDFF9:"+this.projectiles+"("+this.maxProjectiles+")";
     }
 }

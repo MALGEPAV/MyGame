@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 
 public abstract class BaseHero implements GameInterface {
     public String name;
-    protected String state;
+    public String state;
 
     public Pos pos;
     protected int strength, maxStrength;
@@ -58,9 +58,12 @@ public abstract class BaseHero implements GameInterface {
 
     @Override
     public String toString() {
-        return this.getInfo()+" "+this.name+" pos: "+this.pos.toString()+
-                " init: "+this.initiative+" Str:"+this.strength+"("+this.maxStrength+")"+
-                " Arm:"+this.armor+"("+this.maxArmor+") "+this.state;
+        return this.getInfo()+this.name+
+                " \uD83C\uDFAF"+this.pos.toString()+
+                " \uD83C\uDF1F:"+this.initiative+
+                " ♥️:"+this.strength+"("+this.maxStrength+")"+
+                " \uD83D\uDEE1"+this.armor+"("+this.maxArmor+") "
+                +this.getStateSymbol();
     }
 
     public BaseHero nearestAliveEnemy(ArrayList<BaseHero> enemies){
@@ -78,5 +81,13 @@ public abstract class BaseHero implements GameInterface {
     }
     public float getStrPerc(){
         return (float)this.strength/(float)this.maxStrength;
+    }
+    private String getStateSymbol(){
+        switch (this.state){
+            case "dead": return "☠️";
+            case "ready": return "\uD83D\uDC40";
+            case "busy": return "⏱️";
+            default: return this.state;
+        }
     }
 }

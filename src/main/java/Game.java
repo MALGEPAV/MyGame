@@ -4,49 +4,42 @@ import Units.*;
 import java.util.*;
 
 public class Game {
-     private ArrayList<BaseHero> team1;
-     private ArrayList<BaseHero> team2;
-     private PriorityQueue<BaseHero> turnOrder;
-     private int turnCount;
-     private static Scanner myScanner = new Scanner(System.in);
+     public ArrayList<BaseHero> team1;
+     public ArrayList<BaseHero> team2;
+     public PriorityQueue<BaseHero> bothTeamsInTurnOrder;
+     public int turnCount;
+     public int teamSize;
 
-    private void setTeams(){
+
+    public void setTeams(int teamSize){
+        this.teamSize = teamSize;
         this.team1 = new ArrayList<>();
         this.team2 = new ArrayList<>();
 
         Random r = new Random();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i <= this.teamSize; i++) {
             switch (r.nextInt(7)) {
-                case 0 -> this.team1.add(new CrossBowman(getNameM(),new Pos(0,i)));
-                case 1 -> this.team1.add(new Mage(getNameM(), new Pos(0,i)));
-                case 2 -> this.team1.add(new Monk(getNameM(), new Pos(0,i)));
-                case 3 -> this.team1.add(new Peasant(getNameM(), new Pos(0,i)));
-                case 4 -> this.team1.add(new Raider(getNameM(), new Pos(0,i)));
-                case 5 -> this.team1.add(new Sniper(getNameM(), new Pos(0,i)));
-                default -> this.team1.add(new SpearMan(getNameM(),new Pos(0,i)));
+                case 0 -> this.team1.add(new CrossBowman(getNameM(),new Pos(1,i)));
+                case 1 -> this.team1.add(new Mage(getNameM(), new Pos(1,i)));
+                case 2 -> this.team1.add(new Monk(getNameM(), new Pos(1,i)));
+                case 3 -> this.team1.add(new Peasant(getNameM(), new Pos(1,i)));
+                case 4 -> this.team1.add(new Raider(getNameM(), new Pos(1,i)));
+                case 5 -> this.team1.add(new Sniper(getNameM(), new Pos(1,i)));
+                default -> this.team1.add(new SpearMan(getNameM(),new Pos(1,i)));
             }
             switch (r.nextInt(7)) {
-                case 0 -> this.team2.add(new CrossBowman(getNameF(), new Pos(9,i)));
-                case 1 -> this.team2.add(new Mage(getNameF(),new Pos(9,i)));
-                case 2 -> this.team2.add(new Monk(getNameF(), new Pos(9,i)));
-                case 3 -> this.team2.add(new Peasant(getNameF(), new Pos(9,i)));
-                case 4 -> this.team2.add(new Raider(getNameF(), new Pos(9,i)));
-                case 5 -> this.team2.add(new Sniper(getNameF(), new Pos(9,i)));
-                default -> this.team2.add(new SpearMan(getNameF(), new Pos(9,i)));
+                case 0 -> this.team2.add(new CrossBowman(getNameF(), new Pos(this.teamSize,i)));
+                case 1 -> this.team2.add(new Mage(getNameF(),new Pos(this.teamSize,i)));
+                case 2 -> this.team2.add(new Monk(getNameF(), new Pos(this.teamSize,i)));
+                case 3 -> this.team2.add(new Peasant(getNameF(), new Pos(this.teamSize,i)));
+                case 4 -> this.team2.add(new Raider(getNameF(), new Pos(this.teamSize,i)));
+                case 5 -> this.team2.add(new Sniper(getNameF(), new Pos(this.teamSize,i)));
+                default -> this.team2.add(new SpearMan(getNameF(), new Pos(this.teamSize,i)));
             }
         }
     }
-    private void showTeams(){
-        System.out.println("-".repeat(20));
-        System.out.println("TEAM1:");
-        this.team1.forEach(n -> System.out.println(n));
-        System.out.println("-".repeat(20));
-        System.out.println("TEAM2:");
-        this.team2.forEach(n -> System.out.println(n));
-        System.out.println("-".repeat(20));
-    }
-    private void setTurnOrder(){
-        this.turnOrder = new PriorityQueue<>(new Comparator<BaseHero>() {
+    public void setTurnOrder(){
+        this.bothTeamsInTurnOrder = new PriorityQueue<>(new Comparator<BaseHero>() {
             @Override
             public int compare(BaseHero h1, BaseHero h2) {
                 if (h1.initiative==h2.initiative) {
@@ -56,32 +49,32 @@ public class Game {
             return h2.initiative-h1.initiative;
             }
         });
-        this.turnOrder.addAll(this.team1);
-        this.turnOrder.addAll(this.team2);
+        this.bothTeamsInTurnOrder.addAll(this.team1);
+        this.bothTeamsInTurnOrder.addAll(this.team2);
     }
-    private void gameTurn(){
-         while (!this.turnOrder.isEmpty()){
-             if (this.team1.contains(this.turnOrder.peek()))
-                 this.turnOrder.poll().turn(this.team2, this.team1);
-             else this.turnOrder.poll().turn(this.team1, this.team2);
+    public void gameTurn(){
+         while (!this.bothTeamsInTurnOrder.isEmpty()){
+             if (this.team1.contains(this.bothTeamsInTurnOrder.peek()))
+                 this.bothTeamsInTurnOrder.poll().turn(this.team2, this.team1);
+             else this.bothTeamsInTurnOrder.poll().turn(this.team1, this.team2);
          }
     }
 
-    public void play(){
-        System.out.println("ДА НАЧНЕТСЯ БИТВА!");
-         this.setTeams();
-         this.showTeams();
-         this.turnCount = 1;
-         do {
-             System.out.printf("Ход номер %d \n", this.turnCount);
-             System.out.println("-".repeat(20));
-             this.setTurnOrder();
-             this.gameTurn();
-             this.showTeams();
-             this.turnCount++;
-             System.out.println("Введите любую строку для следующего хода или 'stop' для завершения");
-         } while (!myScanner.nextLine().equals("stop"));
-    }
+//    public void play(){
+//        System.out.println("ДА НАЧНЕТСЯ БИТВА!");
+//         this.setTeams();
+//         this.showTeams();
+//         this.turnCount = 1;
+//         do {
+//             System.out.printf("Ход номер %d \n", this.turnCount);
+//             System.out.println("-".repeat(20));
+//             this.setTurnOrder();
+//             this.gameTurn();
+//             this.showTeams();
+//             this.turnCount++;
+//             System.out.println("Введите любую строку для следующего хода или 'stop' для завершения");
+//         } while (!myScanner.nextLine().equals("stop"));
+//    }
 
     private String getNameM(){
         return NamesM.values()[new Random().nextInt(NamesM.values().length)].toString();
