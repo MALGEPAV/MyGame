@@ -5,9 +5,10 @@ public class SimulationRoom {
     static Scanner myScanner = new Scanner(System.in);
     public static void main(String[] args) {
        Game game = new Game();
-       game.setTeams(4);
+       game.setTeams(8);
        game.setTurnOrder();
        View view = new View(game);
+
        view.view();
        System.out.println("'1' - НАЧАТЬ СРАЖЕНИЕ\n'2' - МИРНО РАЗОЙТИСЬ");
        while (myScanner.nextLine().equals("1")) {
@@ -19,5 +20,6 @@ public class SimulationRoom {
        }
         System.out.println("конец...");
     }
+
 
 }

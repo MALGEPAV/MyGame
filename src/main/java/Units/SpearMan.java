@@ -5,7 +5,7 @@ import Aux.Pos;
 public class SpearMan extends MeleeAttackUnit {
     public SpearMan(String name, Pos pos){
 
-        super(3,name,pos,11,11,10,10,3, 7);
+        super(2,name,pos,10,10,12,12,3, 7);
     }
     @Override
     public String getInfo() {

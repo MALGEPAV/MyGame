@@ -32,18 +32,25 @@ public abstract class BaseHero implements GameInterface {
     }
 
     protected void Die() {
-        System.out.println(this.getInfo() +" "+this.name+" dies a horrible death...");
+        System.out.println(this.getInfo()+this.name+" dies a horrible death...");
         this.state = "dead";
     }
 
     protected void getStrengthDamage(int dmg) {
-        System.out.println(this.getInfo()+" "+this.name+" gets "+Math.min(dmg, this.strength)+" str dmg");
-        this.strength -= Math.min(dmg, this.strength);
-        if (strength == 0) this.Die();
+        if (dmg<0) {
+            System.out.println(this.getInfo()+this.name+" restores "+Math.min(-dmg, this.maxStrength-this.strength)+" ♥️ ");
+            this.strength += Math.min(-dmg, this.maxStrength-this.strength);
+
+        }else {
+
+            System.out.println(this.getInfo() + this.name + " gets " + Math.min(dmg, this.strength) + " ♥️ dmg");
+            this.strength -= Math.min(dmg, this.strength);
+            if (strength == 0) this.Die();
+        }
     }
 
     protected void getArmorDamage(int armorDmg) {
-        System.out.println(this.getInfo()+" "+this.name+" gets "+Math.min(armorDmg, this.armor)+" arm dmg");
+        System.out.println(this.getInfo()+this.name+" gets "+Math.min(armorDmg, this.armor)+" \uD83D\uDEE1 dmg");
         this.armor -= Math.min(armorDmg, this.armor);
     }
 
