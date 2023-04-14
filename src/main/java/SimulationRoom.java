@@ -18,11 +18,11 @@ public class SimulationRoom {
            game.turnCount++;
            view.view();
            if (game.teamOneDead()) {
-               System.out.println("TEAM2 WINS\nGame Over...");
+               System.out.println("TEAM2 WINS");
                break;
            }
            if (game.teamTwoDead()) {
-               System.out.println("TEAM1 WINS\nGame Over...");
+               System.out.println("TEAM1 WINS");
                break;
            }
            System.out.println("'1' - СЛЕДУЮЩИЙ ХОД\n'2' - ЗАКОНЧИТЬ");
