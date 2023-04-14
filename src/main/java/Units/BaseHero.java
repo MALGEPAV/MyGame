@@ -65,12 +65,12 @@ public abstract class BaseHero implements GameInterface {
 
     @Override
     public String toString() {
-        return this.getInfo()+this.name+
+        return this.getStateSymbol()+" "+this.getInfo()+this.name+
                 " \uD83C\uDFAF"+this.pos.toString()+
                 " \uD83C\uDF1F:"+this.initiative+
                 " ♥️:"+this.strength+"("+this.maxStrength+")"+
-                " \uD83D\uDEE1"+this.armor+"("+this.maxArmor+") "
-                +this.getStateSymbol();
+                " \uD83D\uDEE1"+this.armor+"("+this.maxArmor+")";
+
     }
 
     public BaseHero nearestAliveEnemy(ArrayList<BaseHero> enemies){

@@ -60,6 +60,21 @@ public class Game {
          }
     }
 
+    public boolean teamOneDead(){
+        for (BaseHero hero:
+             this.team1) {
+            if (!hero.state.equals("dead")) return false;
+        }
+        return true;
+    }
+    public boolean teamTwoDead(){
+        for (BaseHero hero:
+                this.team2) {
+            if (!hero.state.equals("dead")) return false;
+        }
+        return true;
+    }
+
 //    public void play(){
 //        System.out.println("ДА НАЧНЕТСЯ БИТВА!");
 //         this.setTeams();
